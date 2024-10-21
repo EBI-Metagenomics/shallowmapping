@@ -26,7 +26,7 @@
                 "biome": {
                     "type": "string",
                     "description": "This can be any of the MGnify catalogues for which shallow-mapping databases are currently available",
-                    "enum": ["chicken-gut-v1-0-1", "mouse-gut-v1-0", "human-gut-v2-0-2"]
+                    "enum": ["chicken-gut-v1-0-1",  "mouse-gut-v1-0", "non-model-fish-gut-v2-0", "human-vaginal-v1-0", "honeybee-gut-v1-0-1", "sheep-rumen-v1-0", "marine-v2-0", "zebrafish-fecal-v1-0", "human-oral-v1-0-1", "pig-gut-v1-0", "cow-rumen-v1-0-1", "human-gut-v2-0-2"]
                 },
                 "run_bwa": {
                     "type": "boolean",

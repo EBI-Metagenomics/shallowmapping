@@ -5,7 +5,7 @@
 
 **ebi-metagenomics/shallowmapping** is a bioinformatics pipeline that generates taxonomic and functional profiles for low-yield (shallow shotgun: < 10 M reads) short raw-reads using [`MGnify biome-specific genome catalogues`](https://www.ebi.ac.uk/metagenomics/browse/genomes) as a reference.
 
-At the moment, the biome selection is limited to the precomputed databases for [chicken-gut-v1-0-1](https://www.ebi.ac.uk/metagenomics/genome-catalogues/chicken-gut-v1-0-1), [mouse-gut-v1-0](https://www.ebi.ac.uk/metagenomics/genome-catalogues/mouse-gut-v1-0), and [human-gut-v2-0-2](https://www.ebi.ac.uk/metagenomics/genome-catalogues/human-gut-v2-0-2). Other databases can be build for any of the [`MGnify genome catalogues`](https://www.ebi.ac.uk/metagenomics/browse/genomes) upon request by opening an issue in this repository (they will be built on a best-effort basis).
+The biome selection includes all the biomes available in the [`MGnify genome catalogues`](https://www.ebi.ac.uk/metagenomics/browse/genomes).
 
 The main sections of the pipeline include the following steps:
 
@@ -40,19 +40,19 @@ git clone https://github.com/EBI-Metagenomics/shallowmapping.git
 
 The first time you run the pipeline you must put available indexed databases for the decontamination step, MGnify genomes catalogue tables, and some external tables for DRAM visuals generation. MGnify hosts most of the databases and setting up can be done in a single step by providing the location for decontamination and MGnify databases where the new files will be added. The directories have to exist already. Please provide full paths.
 
-Consider that decontamination reference genomes require ~15-20G of storage.
-MGnify catalogue genomes db occupy ~1G.
+Consider that human-phiX decontamination reference genomes require ~15-20G of storage.
+Each MGnify catalogue genomes db occupy ~1G.
 
 ```bash
 cd shallowmapping
 bash bin/databases_setup.sh \
-    --biome <CATALOGUE_ID> \ # Any of the MGnify catalogue ID for which databases are available
+    --biome <CATALOGUE_ID> \ # Any of the MGnify catalogue ID
     --catalogue_dbs_path </path/to/catalogue_dbs> \ # Central location of shallow-mapping dbs. A directory with the biome name will be created
     --decont_refs_path </path/to/decont_refs> \ # Central location of reference genomes for decontamination. Other bwamem2 databases can exist there
     --download_bwa <true or false> default = `false`
 ```
 
-Running the pipeline using bwamem2 is optional. If you want to run the pipeline with this option set the `--download_bwa true`. Consider that this database will occupy >15G of storage in your system.
+Running the pipeline using bwamem2 is optional. If you want to run the pipeline with this option set the `--download_bwa true`. This database will occupy considerable storage in your system depending on the biome.
 
 In addition, instructions to generate the databases from custom catalogues can be found in the [shallowmapping paper's repository](https://github.com/EBI-Metagenomics/shallow_shotgun_paper/tree/main?tab=readme-ov-file#31-processing-custom-genome-catalogues).
 
